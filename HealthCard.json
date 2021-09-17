@@ -1,0 +1,110 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "Branch_Id": 1,
+      "Role_Id": 1 , 
+      "FirstName": "Sam",
+      "LastName": "Dario",
+      "Age": 19,
+      "Phone_Number": "9944673404",
+      "Email" : "sam.d@zucisystems.com",
+      "Password" : "Password@123"        
+    },
+    {
+      "id": 2,
+      "Branch_Id": 1,
+      "Role_Id": 2, 
+      "FirstName": "Shen",
+      "LastName": "Titus",
+      "Age": 25,
+      "Phone_Number": "9944673409",
+      "Email" : "shen.t@zucisystems.com" ,
+      "Password" : "Password@123"         
+    },
+    {
+      "id": 3,
+      "Branch_Id": 1,
+      "Role_Id": 3, 
+      "FirstName": "John",
+      "LastName": "Doe",
+      "Age": 30,
+      "Phone_Number": "9922673404",
+      "Email" : "john.d@zucisystems.com"  ,
+      "Password" : "Password@123"        
+    }
+  ],
+  "Cards": [
+    {
+      "id": 1,
+      "User_id":1,
+      "Branch_Id": 1,
+      "Card_Series_Id": 1,
+      "Valid_From": "20/06/2021",
+      "Valid_Till": "20/12/2021",
+      "Card_Pin": "2323",
+      "Status": "InActive"  
+    }
+  ],
+  "Branch": [
+    {
+      "id": 1,
+      "Manager_UserId": 1,
+      "Branch_Name": "Cure Easy",
+      "Branch_State": "TamilNadu",
+      "Branch_District": "Chennai"
+    }
+  ],
+  "CardSeries": [
+    {
+      "id": 1,
+      "Discount_Percentage": 20
+    }
+  ],
+  "Treatment": [
+    {
+      "id": 1,
+      "User_Id": 1,
+      "Department_Id": 1,
+      "Date_Time": "10/09/2021",
+      "Status": "Completed"
+    },
+    {
+      "id": 2,
+      "User_Id": 1,
+      "Department_Id": 2,
+      "Date_Time": "15/09/2021",
+      "Status": "Completed"
+    }
+  ],
+  "Department": [
+    {
+      "id": 1,
+      "Name": "ENT",
+      "Amount":2000
+    },
+    {
+      "id": 2,
+      "Name": "Physico",
+      "Amount":1000
+    },
+    {
+      "id": 3,
+      "Name": "Ortho",
+      "Amount":5000
+    },
+    {
+      "id": 4,
+      "Name": "Dental",
+      "Amount":1000
+    }
+  ],
+  "Balance": [
+    {
+      "id": 1,
+      "User_Id": 1,
+      "Balance_Amount": 7000
+    }
+  ]
+
+}
