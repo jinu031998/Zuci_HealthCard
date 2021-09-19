@@ -1,8 +1,11 @@
 import { Injectable, Injector } from "@angular/core";
-import { LoginDetails } from "../Models/Account/LoginDetails";
+import { Observable } from "rxjs";
+import { LoginDetails } from "../Models/Account/OnBoard";
 import { AccountService } from "./ApplicationService/AccountService";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FacadeService {
   
   constructor(private injector: Injector) {  }
@@ -15,9 +18,10 @@ export class FacadeService {
     return this._accountService;
   }
   
-  
-
   login(loginDetails : LoginDetails) {
-    return this.accountService.validateLoginCredentials(loginDetails);
+    return this.accountService.login(loginDetails);
   }
+  isEmailExists(Email : string) : Observable<boolean>{
+    return this.accountService.isEmailExists(Email);
+ }
 }

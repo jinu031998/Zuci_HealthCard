@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-image{
+    background-image: url('/assets/images/HealthCard-BG.jpg');
+    background-size: 100%;
+  }
+  .theme-green .bs-datepicker-head {
+    background-color: darkgray;
+}
+.theme-green .bs-datepicker-body table td.week span {
+    color: cadetblue;
+}
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*=select-]:after, .theme-green .bs-datepicker-body table td[class*=select-] span:after {
+    background-color: darkgrey;
+}

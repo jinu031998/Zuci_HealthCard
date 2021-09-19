@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'hc-app-layout',
@@ -14,9 +13,4 @@ export class AppLayoutComponent implements OnInit{
   ngOnInit(): void { 
   }
 
-  login(loginForm :NgForm){
-    console.log("LoginForm.."+loginForm.form);
-    console.log("LoginFormValue.."+JSON.stringify(loginForm.value));
-  }
-  //this.router.navigate(['login']);
  } 
