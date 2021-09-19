@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   selector: 'hc-app-onboard',
   templateUrl: './app.onboard.component.html',
   styleUrls: ['./app.onboard.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppOnboardComponent implements OnInit {
   constructor(private accountService : AccountService, private formBuilder : FormBuilder){}
