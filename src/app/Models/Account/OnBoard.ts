@@ -5,3 +5,7 @@ export class LoginDetails{
 export class LoginResponse{
     token : string
 }
+export interface User {
+    firstName:string;
+    lastName:string;
+}

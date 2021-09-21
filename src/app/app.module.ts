@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from './Services/ApplicationService/AccountService';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewsletterComponent } from './Components/newsletter/newsletter.component';
+import { SampleComponent } from './Components/sample.page/sample.page.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppDashboardComponent,
     AppLayoutComponent,
     AppOnboardComponent,
+    SampleComponent,
+    NewsletterComponent
   ],
   imports: [
     BrowserModule,

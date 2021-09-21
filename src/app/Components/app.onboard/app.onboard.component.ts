@@ -30,27 +30,13 @@ export class AppOnboardComponent implements OnInit {
     this.toggleForm();
   }
 
-  emailExists(control: AbstractControl) {
-     this.accountService.isEmailExists(control.value)
-      .pipe(
-        map(res => {
-          console.log(res);
-          if (res) 
-            return of(true);
-            
-            return of(false);         
-        })
-      );
-  
-}
-
   login(){
     console.log(this.loginForm.value);
     let loginDetails = <LoginDetails>this.loginForm.value;
     this.accountService.login(loginDetails);
   }
   signIn(){
-    console.log(this.signinForm.get('PhoneNumber').errors);
+    console.log(this.signinForm.value);
   }
   
   createloginForm(){
@@ -69,7 +55,7 @@ export class AppOnboardComponent implements OnInit {
       DateOfBirth : ['',[Validators.required]],
       Age : [{value : '', disabled : true},[]],
       PhoneNumber : ['',[Validators.required, CustomValidation.PhoneNumber]],
-      Email: ['', { validators: [ Validators.required, Validators.email ], asyncValidators: [this.emailExists]}],
+      Email: ['', { validators: [ Validators.required, Validators.email ], asyncValidators: [this.accountService.EmailExists]}],
       Password : ['',[Validators.required]],
       ConfirmPassword : ['',[Validators.required]],
     });
@@ -107,12 +93,12 @@ export class AppOnboardComponent implements OnInit {
   toggleForm() {
     this.formToggle$.subscribe(button => {
       if (button == "login") {
-        this.showLoginForm = true;
-        this.showSignupForm = false;
-        this.createloginForm();
-        // this.showLoginForm = false;
-        // this.showSignupForm = true;
-        // this.CreateSignInForm();
+        // this.showLoginForm = true;
+        // this.showSignupForm = false;
+        // this.createloginForm();
+        this.showLoginForm = false;
+        this.showSignupForm = true;
+        this.CreateSignInForm();
       }
       else {
         this.showLoginForm = false;

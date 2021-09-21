@@ -80,7 +80,7 @@
             </div>
           </div>
             <div>
-              <button [disabled]="signinForm.valid" type="submit">SignIn</button>
+              <button [disabled]="!signinForm.valid" type="submit">SignIn</button>
             </div>
             <div>
               <label>
