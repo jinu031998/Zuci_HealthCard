@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, Observable, of} from 'rxjs';
 import { LoginDetails } from 'src/app/Models/Account/OnBoard';
-import { AccountService } from 'src/app/Services/ApplicationService/AccountService';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { CustomValidation } from 'src/app/Services/SharedService/ValidationService';
-import { map } from 'rxjs/operators';
+import { FacadeService } from 'src/app/Services/FacadeService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hc-app-onboard',
@@ -14,8 +14,9 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppOnboardComponent implements OnInit {
-  constructor(private accountService : AccountService, private formBuilder : FormBuilder){}
+  constructor(private router : Router, private facadeService : FacadeService, private formBuilder : FormBuilder){}
 
+  testContent : string = "Zuci_HealthCard";
   UserEmail: string = "";
   Password: string = "";
   showLoginForm: boolean = true;
@@ -28,12 +29,29 @@ export class AppOnboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleForm();
+    // setInterval(()=>{
+    //   this.testContent = this.testContent+"..";
+    // }, 2000);
+  }
+  // ChangeContent(){
+  //   this.testContent = this.testContent;
+  // }
+  
+  EmailExists(control : AbstractControl) : Observable<{[key : string] : boolean}> | null{
+     return of(null);
+    //Not able to call the service to perform validation as there is the problem with service injection.
+    //return this.facadeService.EmailExists(control.value)
   }
 
   login(){
     console.log(this.loginForm.value);
     let loginDetails = <LoginDetails>this.loginForm.value;
-    this.accountService.login(loginDetails);
+    let isValidUser = this.facadeService.login(loginDetails);
+    if(isValidUser) this.router.navigate(['dashboard']);
+  }
+
+  redirectToDashboard(){
+    this.router.navigate(['dashboard']);
   }
   signIn(){
     console.log(this.signinForm.value);
@@ -55,7 +73,7 @@ export class AppOnboardComponent implements OnInit {
       DateOfBirth : ['',[Validators.required]],
       Age : [{value : '', disabled : true},[]],
       PhoneNumber : ['',[Validators.required, CustomValidation.PhoneNumber]],
-      Email: ['', { validators: [ Validators.required, Validators.email ], asyncValidators: [this.accountService.EmailExists]}],
+      Email: ['', { validators: [ Validators.required, Validators.email ], asyncValidators: [this.EmailExists]}],
       Password : ['',[Validators.required]],
       ConfirmPassword : ['',[Validators.required]],
     });
@@ -92,13 +110,14 @@ export class AppOnboardComponent implements OnInit {
 
   toggleForm() {
     this.formToggle$.subscribe(button => {
+      console.log(button);
       if (button == "login") {
-        // this.showLoginForm = true;
-        // this.showSignupForm = false;
-        // this.createloginForm();
-        this.showLoginForm = false;
-        this.showSignupForm = true;
-        this.CreateSignInForm();
+        this.showLoginForm = true;
+        this.showSignupForm = false;
+        this.createloginForm();
+        // this.showLoginForm = false;
+        // this.showSignupForm = true;
+        // this.CreateSignInForm();
       }
       else {
         this.showLoginForm = false;
@@ -110,6 +129,7 @@ export class AppOnboardComponent implements OnInit {
 
   ChangeForm(formName: string) {
     this.formToggleSubject.next(formName);
+    
   }
   //this.router.navigate(['login']);
 }

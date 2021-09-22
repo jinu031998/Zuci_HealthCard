@@ -10,9 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountService } from './Services/ApplicationService/AccountService';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NewsletterComponent } from './Components/newsletter/newsletter.component';
-import { SampleComponent } from './Components/sample.page/sample.page.component';
-
+import { HttpService } from './Services/SharedService/HttpService';
+import { FacadeService } from './Services/FacadeService';
+import { RouterModule } from '@angular/router';
+import { AppTreatmentComponent } from './Components/app.treatment/app.treatment.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,7 @@ import { SampleComponent } from './Components/sample.page/sample.page.component'
     AppDashboardComponent,
     AppLayoutComponent,
     AppOnboardComponent,
-    SampleComponent,
-    NewsletterComponent
+    AppTreatmentComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +29,26 @@ import { SampleComponent } from './Components/sample.page/sample.page.component'
     ReactiveFormsModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot([
+      { path: 'dashboard', component: AppLayoutComponent },
+      { path: 'onboard', component: AppOnboardComponent },
+      { path: 'treatment', component: AppTreatmentComponent },
+      //{ path: '', redirectTo: 'onboard', pathMatch: 'full' },
+      // {
+      //   path: 'products',
+      //   canActivate: [AuthGuard],
+      //   data: { preload: false },
+      //   loadChildren: () =>
+      //     import('./products/product.module').then(m => m.ProductModule)
+      // },
+      //{ path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      
+    ])
   ],
   providers: [
+    FacadeService,
+    HttpService,
     AccountService
   ],
   bootstrap: [AppComponent]

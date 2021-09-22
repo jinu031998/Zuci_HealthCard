@@ -1,8 +1,8 @@
-export class LoginDetails{
+export interface LoginDetails{
     Email : string;
     Password : string;
 }
-export class LoginResponse{
+export interface LoginResponse{
     token : string
 }
 export interface User {

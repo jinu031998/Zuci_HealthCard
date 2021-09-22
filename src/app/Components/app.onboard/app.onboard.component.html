@@ -1,4 +1,7 @@
 <div>
+  
+  <!-- <h1>{{this.testContent}}</h1>
+  <button (click)="ChangeContent()">Change Content</button> -->
   <div *ngIf="showLoginForm">
     <form (ngSubmit)="login()" [formGroup]="loginForm" >
       <div class="container float-right mx-5 mt-5">
@@ -18,7 +21,7 @@
               </label>
             </div>
             <div>
-              <button [disabled]="!loginForm.valid" type="submit">Login</button>
+              <button [disabled]="loginForm.valid" type="submit">Login</button>
             </div>
             <div>
               <label>
