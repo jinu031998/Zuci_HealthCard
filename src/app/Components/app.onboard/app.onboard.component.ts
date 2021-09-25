@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, of} from 'rxjs';
-import { LoginDetails } from 'src/app/Models/Account/OnBoard';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { CustomValidation } from 'src/app/Services/SharedService/ValidationService';
 import { FacadeService } from 'src/app/Services/FacadeService';
 import { Router } from '@angular/router';
+import { LoginDetails } from 'src/app/Models/OnBoard';
 
 @Component({
   selector: 'hc-app-onboard',
@@ -47,7 +47,7 @@ export class AppOnboardComponent implements OnInit {
     console.log(this.loginForm.value);
     let loginDetails = <LoginDetails>this.loginForm.value;
     let isValidUser = this.facadeService.login(loginDetails);
-    if(isValidUser) this.router.navigate(['dashboard']);
+    if(isValidUser) this.redirectToDashboard();
   }
 
   redirectToDashboard(){

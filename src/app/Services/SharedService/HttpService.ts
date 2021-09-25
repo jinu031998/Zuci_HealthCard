@@ -1,20 +1,24 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class HttpService {
- 
+    public httpOptions: {
+        headers: HttpHeaders
+    };
     constructor(private http: HttpClient) { }
-
-    Get(url : string , httpOptions? : any){   
-       return this.http.get(url , this.GetHttpOptions(httpOptions));
+    
+    Get<T>(url : string , httpOptions? : any)  : Observable<T>{   
+       return this.http.get<T>(url , this.GetHttpOptions(httpOptions));
     }
 
     Post(url :string, data : any, httpOptions? : any){
         return this.http.post(url, data, this.GetHttpOptions(httpOptions));
     }
 
-    GetHttpOptions(httpOptions : any){
+
+    GetHttpOptions(httpOptions : object){
         if(httpOptions == null || httpOptions == undefined)
             return this.GetDefaultHttpOptions();
         else

@@ -1,9 +1,7 @@
-<div>
-    <h1>DashBoard Page</h1>
-</div>
-<div>
-    <h1>DashBoard Page 1</h1>
-</div>
-<div>
-    <h1>DashBoard Page 2</h1>
+<div *ngIf="allUsers$ | async as Users">
+    <div *ngFor="let user of Users">
+        <h1>{{user.FirstName}}</h1>
+        <h1>{{user.LastName}}</h1>
+    </div>
+    
 </div>

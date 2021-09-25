@@ -6,6 +6,9 @@ export class ApiConstants {
     private static get baseUrl(): string {
         return environment.apiBaseUrl;
     }
+    public static getAllUser() : string {
+        return ApiConstants.baseUrl + "Users";
+    }
     public static Url = {
         Login: ApiConstants.baseUrl +"api/Users",
     }

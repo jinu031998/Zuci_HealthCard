@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppOnboardComponent } from './Components/app.onboard/app.onboard.component';
-import { AppLayoutComponent } from './Components/app.layout/app.layout.component';
 import { AppDashboardComponent } from './Components/app.dashboard/app.dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,14 +13,20 @@ import { HttpService } from './Services/SharedService/HttpService';
 import { FacadeService } from './Services/FacadeService';
 import { RouterModule } from '@angular/router';
 import { AppTreatmentComponent } from './Components/app.treatment/app.treatment.component';
+import { AppHeaderComponent } from './Components/app.header/app.header.component';
+import { AppFooterComponent } from './Components/app.footer/app.footer.component';
+import { AuthGuard } from './Services/ApplicationService/AuthGuard';
+import { StorageService } from './Services/SharedService/StorageService';
+import { UserService } from './Services/ApplicationService/UserService';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppDashboardComponent,
-    AppLayoutComponent,
     AppOnboardComponent,
-    AppTreatmentComponent
+    AppTreatmentComponent,
+    AppHeaderComponent,
+    AppFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { AppTreatmentComponent } from './Components/app.treatment/app.treatment.
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      { path: 'dashboard', component: AppLayoutComponent },
+      { path: 'dashboard', component: AppDashboardComponent, canActivate: [AuthGuard]},
       { path: 'onboard', component: AppOnboardComponent },
       { path: 'treatment', component: AppTreatmentComponent },
       //{ path: '', redirectTo: 'onboard', pathMatch: 'full' },
@@ -49,7 +54,9 @@ import { AppTreatmentComponent } from './Components/app.treatment/app.treatment.
   providers: [
     FacadeService,
     HttpService,
-    AccountService
+    AccountService,
+    StorageService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

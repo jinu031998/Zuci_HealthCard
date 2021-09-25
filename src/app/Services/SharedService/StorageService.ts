@@ -1,12 +1,13 @@
+import { Injectable } from "@angular/core";
 
-
+@Injectable()
 export class StorageService{
 
-    static getValue(key : string) : string
+    getValue(key : string) : string
     {
         return sessionStorage.getItem(key);
     }
-    static setValue(key : string, value : string) : boolean
+    setValue(key : string, value : string) : boolean
     {
         try
         {
@@ -18,5 +19,13 @@ export class StorageService{
             return false;
         }
         
+    }
+    clearAll() : boolean{
+        sessionStorage.clear();
+        return true;
+    }
+    removeIten(key : string) : boolean{
+        sessionStorage.removeItem(key);
+        return true;
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable, Injector } from "@angular/core";
-import { LoginDetails } from "../Models/Account/OnBoard";
+import { LoginDetails } from "../Models/OnBoard";
 import { AccountService } from "./ApplicationService/AccountService";
 
 @Injectable()
